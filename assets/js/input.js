@@ -29,10 +29,15 @@
 			$(this).closest('li').find('input[type="checkbox"]').attr('value', value.toLowerCase());
 		});
 
+		$('body').on('click', '.btn-custom-choice-remove', function(e) {
+			e.preventDefault();
+			$(this).closest('li').remove();
+		});
+
 	}
 
 	function custom_choice_template(id, name) {
-		var template = '<li><label><input type="checkbox" id="'+ id +'" name="' + name + '" class="custom_checkbox"><input type="text"><button class="btn-custom-choice-save">Save</button></label></li>';
+		var template = '<li><label><input type="checkbox" id="'+ id +'" name="' + name + '" class="custom_checkbox" checked="checked"><input type="text"><button class="btn-custom-choice-save">Save</button><button class="btn-custom-choice-remove">Remove</button></label></li>';
 
 		return template;
 	}
