@@ -3,12 +3,13 @@
 /*
 Plugin Name: Advanced Custom Fields: Custom Checkbox
 Plugin URI: PLUGIN_URL
-Description: SHORT_DESCRIPTION
+Description: Checkbox field with dynamic choice for Advanced Custom Fields
 Version: 1.0.0
-Author: AUTHOR_NAME
+Author: Bayu Darmantra
 Author URI: AUTHOR_URL
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
+GitHub Plugin URI: https://github.com/GeckoProjects/ACF-Custom-Checkbox
 */
 
 // exit if accessed directly
