@@ -33,6 +33,7 @@ class acf_field_custom_checkbox extends acf_field {
 		$this->defaults = array(
 			'layout'		=>	'vertical',
 			'choices'		=>	array(),
+			'other_choices' => array(),
 			'default_value'	=>	'',
 		);
 
@@ -151,6 +152,7 @@ class acf_field_custom_checkbox extends acf_field {
 
 	function create_field( $field )
 	{
+
 		// value must be array
 		if( !is_array($field['value']) )
 		{
@@ -191,18 +193,35 @@ class acf_field_custom_checkbox extends acf_field {
 		// checkbox saves an array
 		$field['name'] .= '[]';
 
+		//Get other choice field
+		if( $field['value'] && count( $field['value'] ) > 0 ) {
+			$field['other_choices'] = array_diff( $field['value'] , array_flip( $field['choices'] ) );
+			if( count( $field['other_choices'] ) > 0 ) {
+				foreach ( array_values($field['other_choices']) as $value) {
+					$field['choices'][$value] = $value;
+				}
+			}
+		}
+
 		// foreach choices
 		foreach( $field['choices'] as $key => $value )
 		{
 			// vars
 			$i++;
 			$atts = '';
+			$other_choice_class = '';
 
 
 			if( in_array($key, $field['value']) )
 			{
 				$atts = 'checked="yes"';
 			}
+
+			//Check if current choice is other choice
+			if( in_array($key, $field['other_choices'] ) ) {
+				$other_choice_class = 'other-choice';
+			}
+
 			if( isset($field['disabled']) && in_array($key, $field['disabled']) )
 			{
 				$atts .= ' disabled="true"';
@@ -217,15 +236,15 @@ class acf_field_custom_checkbox extends acf_field {
 				$id .= '-' . $key;
 			}
 
-			$e .= '<li><label><input id="' . esc_attr($id) . '" type="checkbox" class="' . esc_attr($field['class']) . '" name="' . esc_attr($field['name']) . '" value="' . esc_attr($key) . '" ' . $atts . ' />' . $value . '</label></li>';
+			$e .= '<li class="'.$other_choice_class.'"><label><input id="' . esc_attr($id) . '" type="checkbox" class="' . esc_attr($field['class']) . '" name="' . esc_attr($field['name']) . '" value="' . esc_attr($key) . '" ' . $atts . ' />' . $value . '</label></li>';
 		}
 
 		$e .= '</ul>';
 
-		echo '<button type="button" class="btn-add-custom-choice" data-name="'.esc_attr($field['name']).'" data-parent="acf-'.esc_attr($field['_name']).'">Add custom choice</button>';
-
 		// return
 		echo $e;
+		echo '<hr>';
+		echo '<button type="button" class="btn-add-custom-choice" data-name="'.esc_attr($field['name']).'" data-parent="acf-'.esc_attr($field['_name']).'">Add custom choice</button>';
 	}
 
 
