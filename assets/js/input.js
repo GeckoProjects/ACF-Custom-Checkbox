@@ -15,17 +15,19 @@
 
 	function initialize_field( $field ) {
 
-		$('.btn-add-custom-choice').click(function(e) {
+	}
+
+	function custom_choice_events() {
+		$('body').on('click', '.btn-add-custom-choice', function(e) {
 			e.preventDefault();
 			$(this).closest( '#' + $(this).data('parent') ).find('ul').append( custom_choice_template( $(this).data('parent'), $(this).data('name') ) );
-
 		});
 
 		$('body').on('click', '.btn-custom-choice-save', function(e) {
 			e.preventDefault();
 			var value = $(this).closest('li').find('input[type="text"]').val();
 			var id = $(this).closest('li').find('input[type="checkbox"]').attr('id');
-		  $(this).closest('li').find('input[type="checkbox"]').attr('id', id + '_' + value.toLowerCase());
+			$(this).closest('li').find('input[type="checkbox"]').attr('id', id + '_' + value.toLowerCase());
 			$(this).closest('li').find('input[type="checkbox"]').attr('value', value.toLowerCase());
 		});
 
@@ -33,7 +35,6 @@
 			e.preventDefault();
 			$(this).closest('li').remove();
 		});
-
 	}
 
 	function custom_choice_template(id, name) {
@@ -73,6 +74,7 @@
 		*/
 
 		$(document).on('acf/setup_fields', function(e, postbox){
+			custom_choice_events();
 
 			// find all relevant fields
 			$(postbox).find('.field[data-field_type="custom_checkbox"]').each(function(){
