@@ -1,0 +1,51 @@
+.custom-checkbox-edit-mode{
+  display:inline-block;
+}
+
+.btn-add-custom-choice span{
+  margin-top:5px
+}
+
+.custom-checkbox-value{
+  display:inline-block;
+  margin-right:10px;
+}
+
+.custom-button-group{
+  display:inline-block;
+  position:relative;
+  top:-2px;
+}
+
+.custom-button-group a{
+  display:inline-block;
+  padding:5px;
+  text-decoration:none;
+  margin-right:5px;
+  color:#FFF;
+  transition:all 300ms;
+}
+
+.custom-button-group a:focus{
+  box-shadow:none
+}
+
+.custom-button-group .btn-custom-choice-save-edit{
+  background-color:#00cc00;
+}
+
+.custom-button-group .btn-custom-choice-save-edit:hover{
+  background-color:#009933;
+}
+
+.custom-button-group .btn-custom-choice-remove{
+  background-color:#f03
+}
+
+.custom-button-group .btn-custom-choice-remove:hover{
+  background-color:#993333
+}
+
+.custom-checkbox-has-error{
+  border:1px solid #f03 !important;
+}
