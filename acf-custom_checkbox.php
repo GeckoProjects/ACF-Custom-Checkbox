@@ -4,7 +4,7 @@
 Plugin Name: Advanced Custom Fields: Custom Checkbox
 Plugin URI: PLUGIN_URL
 Description: Checkbox field with dynamic choice for Advanced Custom Fields
-Version: 1.0.1
+Version: 1.0.2
 Author: Bayu Darmantra
 Author URI: AUTHOR_URL
 License: GPLv2 or later
@@ -43,7 +43,7 @@ class acf_plugin_custom_checkbox {
 		// settings
 		// - these will be passed into the field class.
 		$this->settings = array(
-			'version'	=> '1.0.1',
+			'version'	=> '1.0.2',
 			'url'		=> plugin_dir_url( __FILE__ ),
 			'path'		=> plugin_dir_path( __FILE__ )
 		);
