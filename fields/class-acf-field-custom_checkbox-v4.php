@@ -235,8 +235,11 @@ class acf_field_custom_checkbox extends acf_field {
 			{
 				$id .= '-' . $key;
 			}
-
-			$e .= '<li class="'.$other_choice_class.'"><label><input id="' . esc_attr($id) . '" type="checkbox" class="' . esc_attr($field['class']) . '" name="' . esc_attr($field['name']) . '" value="' . esc_attr($key) . '" ' . $atts . ' />' . $value . '</label></li>';
+			if( in_array($key, $field['other_choices'] ) ) {
+				$e .= '<li class="'.$other_choice_class.'"><label><input id="' . esc_attr($id) . '" type="checkbox" class="' . esc_attr($field['class']) . '" name="' . esc_attr($field['name']) . '" value="' . esc_attr($key) . '" ' . $atts . ' /><input type="text" style="display:none" value="'.$value.'"><span class="custom-checkbox-value">'.$value.'</span><div class="custom-button-group"><a href="#" class="btn-custom-choice-save-edit"><span class="dashicons dashicons-edit"></span></a><a href="#" class="btn-custom-choice-remove"><span class="dashicons dashicons-minus"></span></a></div></label></li>';
+			}else{
+				$e .= '<li><label><input id="' . esc_attr($id) . '" type="checkbox" class="' . esc_attr($field['class']) . '" name="' . esc_attr($field['name']) . '" value="' . esc_attr($key) . '" ' . $atts . ' />' . $value . '</label></li>';
+			}
 		}
 
 		$e .= '</ul>';
@@ -244,7 +247,7 @@ class acf_field_custom_checkbox extends acf_field {
 		// return
 		echo $e;
 		echo '<hr>';
-		echo '<a href="#" class="btn-add-custom-choice" data-name="'.esc_attr($field['name']).'" data-parent="acf-'.esc_attr($field['_name']).'">Add custom choice</a>';
+		echo '<a href="#" class="btn-add-custom-choice" data-name="'.esc_attr($field['name']).'" data-parent="acf-'.esc_attr($field['_name']).'">+ Add new option</a>';
 	}
 
 
@@ -271,13 +274,13 @@ class acf_field_custom_checkbox extends acf_field {
 
 
 		// register & include JS
-		wp_register_script('TEXTDOMAIN', "{$url}assets/js/input.js", array('acf-input'), $version);
-		wp_enqueue_script('TEXTDOMAIN');
+		wp_register_script('custom-checkbox', "{$url}assets/js/input.js", array('acf-input'), $version);
+		wp_enqueue_script('custom-checkbox');
 
 
 		// register & include CSS
-		wp_register_style('TEXTDOMAIN', "{$url}assets/css/input.css", array('acf-input'), $version);
-		wp_enqueue_style('TEXTDOMAIN');
+		wp_register_style('custom-checkbox', "{$url}assets/css/input.css", array('acf-input'), $version);
+		wp_enqueue_style('custom-checkbox');
 
 	}
 
